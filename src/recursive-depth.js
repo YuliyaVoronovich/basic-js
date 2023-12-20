@@ -24,7 +24,8 @@ class DepthCalculator {
       const count = this.calculateDepth(arr[i]);
       result = Math.max(result,count);
     }
-    return result + 1;
+    result +=1;
+    return result;
   }
 }
 
