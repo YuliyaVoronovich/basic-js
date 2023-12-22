@@ -23,6 +23,9 @@ function transform(arr) {
   }
   let result = [];
   arr.forEach((item, index) => {
+        if (item === '--discard-next' && index+1 < arr.length-1) {
+            arr.splice(arr.indexOf('--discard-next')+1, 1);
+        }
         if (item === '--double-next' && index+1 < arr.length-1) {
             result.push(arr[index+1]);
         }
@@ -32,9 +35,7 @@ function transform(arr) {
         if (item === '--discard-prev' && index-1 > 0) {
             result.pop();
         }
-        if (item === '--discard-next' && index+1 < arr.length-1) {
-            arr.splice(arr.indexOf('--discard-next')+1, 1);
-        }
+       
         result.push(arr[index]);
     });
    return result.filter(item => item !== '--double-next' && item !== '--double-prev' && item !== '--discard-prev' && item !== '--discard-next' );
